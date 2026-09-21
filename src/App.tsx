@@ -102,10 +102,10 @@ function App() {
                     <h2 className="mb-4 text-xl font-semibold">Colors</h2>
 
                     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                        {colors.map(({ name, variable, className, style }) => (
+                        {colors.map(({ name, variable, style }) => (
                             <div
                                 key={variable}
-                                className={`flex min-h-36 flex-col justify-end rounded-lg border p-4 ${className ?? ""}`}
+                                className="flex min-h-36 flex-col justify-end rounded-lg border p-4"
                                 style={style}
                             >
                                 <strong>{name}</strong>
