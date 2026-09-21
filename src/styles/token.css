@@ -1,0 +1,121 @@
+/* =========================================================
+   CUI Design Tokens
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   Primitive Tokens
+   --------------------------------------------------------- */
+
+:root {
+    /* Blue */
+    --cui-color-blue-50: #f0f7ff;
+    --cui-color-blue-100: #e0efff;
+    --cui-color-blue-200: #b9dcff;
+    --cui-color-blue-300: #7cc0ff;
+    --cui-color-blue-400: #36a1fa;
+    --cui-color-blue-500: #0c84e9;
+    --cui-color-blue-600: #006ac3;
+    --cui-color-blue-700: #07569b;
+    --cui-color-blue-800: #0b497f;
+    --cui-color-blue-900: #0e3d69;
+    --cui-color-blue-950: #092746;
+
+    /* Neutral */
+    --cui-color-neutral-0: #ffffff;
+    --cui-color-neutral-50: #f8fafc;
+    --cui-color-neutral-100: #f1f5f9;
+    --cui-color-neutral-200: #e2e8f0;
+    --cui-color-neutral-300: #cbd5e1;
+    --cui-color-neutral-400: #94a3b8;
+    --cui-color-neutral-500: #64748b;
+    --cui-color-neutral-600: #475569;
+    --cui-color-neutral-700: #334155;
+    --cui-color-neutral-800: #1e293b;
+    --cui-color-neutral-900: #0f172a;
+    --cui-color-neutral-950: #020617;
+
+    /* Red */
+    --cui-color-red-50: #fef2f2;
+    --cui-color-red-100: #fee2e2;
+    --cui-color-red-200: #fecaca;
+    --cui-color-red-500: #ef4444;
+    --cui-color-red-600: #dc2626;
+    --cui-color-red-700: #b91c1c;
+    --cui-color-red-900: #7f1d1d;
+
+    /* Green */
+    --cui-color-green-50: #f0fdf4;
+    --cui-color-green-100: #dcfce7;
+    --cui-color-green-600: #16a34a;
+    --cui-color-green-700: #15803d;
+    --cui-color-green-900: #14532d;
+
+    /* Amber */
+    --cui-color-amber-50: #fffbeb;
+    --cui-color-amber-100: #fef3c7;
+    --cui-color-amber-600: #d97706;
+    --cui-color-amber-700: #b45309;
+    --cui-color-amber-900: #78350f;
+
+
+    /* -------------------------------------------------------
+       Shape
+       ------------------------------------------------------- */
+
+    --cui-radius-none: 0;
+    --cui-radius-sm: 0.25rem;
+    --cui-radius-md: 0.375rem;
+    --cui-radius-lg: 0.5rem;
+    --cui-radius-xl: 0.75rem;
+    --cui-radius-2xl: 1rem;
+    --cui-radius-full: 9999px;
+}
+
+
+/* =========================================================
+   Semantic Tokens - Light
+   ========================================================= */
+
+:root {
+    /* Brand / Primary */
+    --cui-color-primary: var(--cui-color-blue-700);
+    --cui-color-on-primary: var(--cui-color-neutral-0);
+
+    --cui-color-primary-container: var(--cui-color-blue-100);
+    --cui-color-on-primary-container: var(--cui-color-blue-900);
+
+    /* Surface */
+    --cui-color-surface: var(--cui-color-neutral-0);
+    --cui-color-on-surface: var(--cui-color-neutral-900);
+
+    --cui-color-surface-variant: var(--cui-color-neutral-100);
+    --cui-color-on-surface-variant: var(--cui-color-neutral-700);
+
+    /* Outline */
+    --cui-color-outline: var(--cui-color-neutral-500);
+    --cui-color-outline-variant: var(--cui-color-neutral-300);
+
+    /* Error */
+    --cui-color-error: var(--cui-color-red-700);
+    --cui-color-on-error: var(--cui-color-neutral-0);
+
+    --cui-color-error-container: var(--cui-color-red-100);
+    --cui-color-on-error-container: var(--cui-color-red-900);
+
+    /* Success */
+    --cui-color-success: var(--cui-color-green-700);
+    --cui-color-on-success: var(--cui-color-neutral-0);
+
+    --cui-color-success-container: var(--cui-color-green-100);
+    --cui-color-on-success-container: var(--cui-color-green-900);
+
+    /* Warning */
+    --cui-color-warning: var(--cui-color-amber-700);
+    --cui-color-on-warning: var(--cui-color-neutral-0);
+
+    --cui-color-warning-container: var(--cui-color-amber-100);
+    --cui-color-on-warning-container: var(--cui-color-amber-900);
+
+    /* Focus */
+    --cui-color-focus: var(--cui-color-blue-600);
+}
