@@ -102,10 +102,10 @@ function App() {
                     <h2 className="mb-4 text-xl font-semibold">Colors</h2>
 
                     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                        {colors.map(({ name, variable, className, style }) => (
+                        {colors.map(({ name, variable, style }) => (
                             <div
                                 key={variable}
-                                className={`flex min-h-36 flex-col justify-end rounded-lg border p-4 ${className ?? ""}`}
+                                className="flex min-h-36 flex-col justify-end rounded-lg border p-4"
                                 style={style}
                             >
                                 <strong>{name}</strong>
@@ -118,13 +118,41 @@ function App() {
                 <section>
                     <h2 className="mb-4 text-xl font-semibold">Buttons</h2>
 
-                    <div className="flex flex-wrap gap-3">
-                        <Button>Primary</Button>
-                        <Button variant="secondary">Secondary</Button>
-                        <Button variant="outline">Outline</Button>
-                        <Button variant="ghost">Ghost</Button>
-                        <Button variant="destructive">Destructive</Button>
-                        <Button disabled>Disabled</Button>
+                    <div className="space-y-6">
+                        <div>
+                            <h3 className="mb-3 text-sm font-medium">Variants</h3>
+
+                            <div className="flex flex-wrap gap-3">
+                                <Button variant="primary">Primary</Button>
+                                <Button variant="secondary">Secondary</Button>
+                                <Button variant="outline">Outline</Button>
+                                <Button variant="ghost">Ghost</Button>
+                                <Button variant="destructive">Destructive</Button>
+                                <Button variant="link">Link</Button>
+                                <Button size="icon-md" aria-label="搜尋">
+                                    icon按鈕
+                                </Button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 className="mb-3 text-sm font-medium">Sizes</h3>
+
+                            <div className="flex flex-wrap items-center gap-3">
+                                <Button size="sm">Small</Button>
+                                <Button size="md">Medium</Button>
+                                <Button size="lg">Large</Button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 className="mb-3 text-sm font-medium">States</h3>
+
+                            <div className="flex flex-wrap gap-3">
+                                <Button>Default</Button>
+                                <Button disabled>Disabled</Button>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
