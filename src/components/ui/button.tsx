@@ -27,7 +27,6 @@ const buttonVariants = cva(
 
       "[&_svg]:pointer-events-none",
       "[&_svg]:shrink-0",
-      "[&_svg:not([class*='size-'])]:size-4",
     ],
     {
       variants: {
@@ -56,19 +55,19 @@ const buttonVariants = cva(
               "h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
 
           md:
-              "h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
+              "h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 [&_svg:not([class*='size-'])]:size-4",
 
           lg:
-              "h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
+              "h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2 [&_svg:not([class*='size-'])]:size-5",
 
           "icon-sm":
               "size-7 rounded-[min(var(--radius-md),12px)] [&_svg:not([class*='size-'])]:size-3.5",
 
           "icon-md":
-              "size-8",
+              "size-8 [&_svg:not([class*='size-'])]:size-4",
 
           "icon-lg":
-              "size-9",
+              "size-9 [&_svg:not([class*='size-'])]:size-5",
         },
       },
 

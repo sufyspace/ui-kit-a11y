@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { Search, Plus } from "lucide-react"
 
 const colors = [
     {
@@ -151,6 +152,51 @@ function App() {
                             <div className="flex flex-wrap gap-3">
                                 <Button>Default</Button>
                                 <Button disabled>Disabled</Button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 className="mb-4 text-xl font-semibold">Button with Icons</h2>
+
+                    <div className="space-y-6">
+                        <div>
+                            <h3 className="mb-3 text-sm font-medium">With Icon</h3>
+
+                            <div className="flex flex-wrap items-center gap-3">
+                                <Button size="sm">
+                                    <Search />
+                                    Search
+                                </Button>
+
+                                <Button size="md">
+                                    <Search />
+                                    Search
+                                </Button>
+
+                                <Button size="lg">
+                                    <Search />
+                                    Search
+                                </Button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 className="mb-3 text-sm font-medium">Icon Only</h3>
+
+                            <div className="flex flex-wrap items-center gap-3">
+                                <Button size="icon-sm" aria-label="新增">
+                                    <Plus />
+                                </Button>
+
+                                <Button size="icon-md" aria-label="新增">
+                                    <Plus />
+                                </Button>
+
+                                <Button size="icon-lg" aria-label="新增">
+                                    <Plus />
+                                </Button>
                             </div>
                         </div>
                     </div>
