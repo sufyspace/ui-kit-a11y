@@ -6,7 +6,7 @@ const buttonVariants = cva(
     [
       "group/button",
       "inline-flex shrink-0 items-center justify-center",
-      "rounded-lg border border-transparent bg-clip-padding",
+      "border border-transparent bg-clip-padding",
       "text-sm font-medium whitespace-nowrap",
       "transition-all outline-none select-none",
 
@@ -69,11 +69,18 @@ const buttonVariants = cva(
           "icon-lg":
               "size-9 [&_svg:not([class*='size-'])]:size-5",
         },
+
+        shape: {
+            square: "rounded-none",
+            default: "rounded-lg",
+            pill: "rounded-full",
+        }
       },
 
       defaultVariants: {
         variant: "primary",
         size: "md",
+        shape: "default",
       },
     },
 )
@@ -82,6 +89,7 @@ function Button({
   className,
   variant = "primary",
   size = "md",
+  shape = "default",
   ...props
 }: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
   return (
@@ -90,7 +98,8 @@ function Button({
       data-cui-slot="button"
       data-cui-variant={variant}
       data-cui-size={size}
-      className={cn(buttonVariants({ variant, size, className }))}
+      data-cui-shape={shape}
+      className={cn(buttonVariants({ variant, size, shape, className }))}
       {...props}
     />
   )

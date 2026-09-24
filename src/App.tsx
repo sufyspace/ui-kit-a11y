@@ -154,6 +154,47 @@ function App() {
                                 <Button disabled>Disabled</Button>
                             </div>
                         </div>
+
+                        <div>
+                            <h3 className="mb-3 text-sm font-medium">Shape</h3>
+
+                            <div className="flex flex-wrap items-center gap-3">
+                                <Button>
+                                    Default
+                                </Button>
+
+                                <Button shape="square">
+                                    Square corners Button
+                                </Button>
+
+                                <Button shape="pill">
+                                    Pill Button
+                                </Button>
+
+                                <Button shape="pill" variant="secondary">
+                                    Secondary
+                                </Button>
+
+                                <Button shape="pill" variant="outline">
+                                    Outline
+                                </Button>
+
+                                <Button shape="pill">
+                                    <Plus aria-hidden="true" />
+                                    Add Item
+                                </Button>
+
+                                <Button
+                                    size="icon-md"
+                                    shape="pill"
+                                    aria-label="新增"
+                                >
+                                    <Plus aria-hidden="true" />
+                                </Button>
+
+                            </div>
+                        </div>
+
                     </div>
                 </section>
 
