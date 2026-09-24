@@ -1,12 +1,18 @@
 import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
+import { LoaderCircle } from "lucide-react"
+
+type ButtonProps = ButtonPrimitive.Props &
+    VariantProps<typeof buttonVariants> & {
+    loading?: boolean
+}
 
 const buttonVariants = cva(
     [
       "group/button",
       "inline-flex shrink-0 items-center justify-center",
-      "rounded-lg border border-transparent bg-clip-padding",
+      "border border-transparent bg-clip-padding",
       "text-sm font-medium whitespace-nowrap",
       "transition-all outline-none select-none",
 
@@ -69,11 +75,18 @@ const buttonVariants = cva(
           "icon-lg":
               "size-9 [&_svg:not([class*='size-'])]:size-5",
         },
+
+        shape: {
+            square: "rounded-none",
+            default: "rounded-lg",
+            pill: "rounded-full",
+        }
       },
 
       defaultVariants: {
         variant: "primary",
         size: "md",
+        shape: "default",
       },
     },
 )
@@ -82,17 +95,36 @@ function Button({
   className,
   variant = "primary",
   size = "md",
+  shape = "default",
+  loading = false,
+  disabled,
+  children,
   ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+}: ButtonProps) {
+    const isDisabled = disabled || loading;
+
   return (
     <ButtonPrimitive
       data-slot="button"
       data-cui-slot="button"
       data-cui-variant={variant}
       data-cui-size={size}
-      className={cn(buttonVariants({ variant, size, className }))}
+      data-cui-shape={shape}
+      data-cui-loading={loading || undefined}
+      aria-busy={loading || undefined}
+      disabled={isDisabled}
+      className={cn(
+          buttonVariants({ variant, size, shape, className }))}
       {...props}
-    />
+    >
+        {loading && (
+            <LoaderCircle
+                aria-hidden="true"
+                className="animate-spin"
+            />
+        )}
+        {children}
+    </ButtonPrimitive>
   )
 }
 
