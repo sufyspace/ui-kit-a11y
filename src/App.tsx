@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { Search, Plus } from "lucide-react"
+import { Search, Plus, Save, Trash2 } from "lucide-react"
 
 const colors = [
     {
@@ -237,6 +237,47 @@ function App() {
 
                                 <Button size="icon-lg" aria-label="新增">
                                     <Plus />
+                                </Button>
+
+                                <Button
+                                    size="icon-md"
+                                    shape="pill"
+                                    aria-label="刪除"
+                                    variant="destructive"
+                                >
+                                    <Trash2 aria-hidden="true" />
+                                </Button>
+                            </div>
+                        </div>
+
+                        {/* States */}
+                        <div>
+                            <h3 className="mb-3 font-medium">States</h3>
+
+                            <div className="flex flex-wrap items-center gap-3">
+                                <Button disabled>
+                                    Disabled
+                                </Button>
+
+                                <Button loading>
+                                    儲存
+                                </Button>
+
+                                <Button loading shape="pill">
+                                    送出資料
+                                </Button>
+
+                                <Button loading>
+                                    <Save aria-hidden="true" />
+                                    儲存
+                                </Button>
+
+                                <Button
+                                    loading
+                                    size="icon-md"
+                                    aria-label="儲存"
+                                >
+                                    <Save aria-hidden="true" />
                                 </Button>
                             </div>
                         </div>
