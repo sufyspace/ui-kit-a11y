@@ -1,8 +1,17 @@
 import { Button } from "@/components/ui/button"
-import {Field, FieldContent, FieldDescription, FieldError, FieldLabel} from "@/components/ui/field"
+import {
+    Field,
+    FieldContent,
+    FieldDescription,
+    FieldError,
+    FieldLabel,
+    FieldLegend,
+    FieldSet
+} from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Search, Plus, Save, Trash2 } from "lucide-react"
 import {useState} from "react";
 
@@ -583,6 +592,52 @@ function App() {
                     </Field>
                 </section>
 
+                <section className="mt-12 max-w-md space-y-6">
+                    <h2 className="text-xl font-semibold">
+                        Radio Group
+                    </h2>
+
+                    <FieldSet>
+                        <FieldLegend>付款方式</FieldLegend>
+
+                        <RadioGroup defaultValue="card">
+                            <Field orientation="horizontal">
+                                <RadioGroupItem
+                                    value="card"
+                                    id="payment-card"
+                                />
+
+                                <FieldLabel htmlFor="payment-card">
+                                    信用卡
+                                </FieldLabel>
+                            </Field>
+
+                            <Field orientation="horizontal">
+                                <RadioGroupItem
+                                    value="atm"
+                                    id="payment-atm"
+                                    disabled
+                                />
+
+                                <FieldLabel htmlFor="payment-atm">
+                                    ATM
+                                </FieldLabel>
+                            </Field>
+
+                            <Field orientation="horizontal">
+                                <RadioGroupItem
+                                    value="store"
+                                    id="payment-store"
+                                />
+
+                                <FieldLabel htmlFor="payment-store">
+                                    超商付款
+                                </FieldLabel>
+                            </Field>
+                        </RadioGroup>
+                    </FieldSet>
+
+                </section>
             </div>
         </main>
     )
