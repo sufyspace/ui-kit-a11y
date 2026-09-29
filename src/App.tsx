@@ -1,7 +1,18 @@
 import { Button } from "@/components/ui/button"
-import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field"
+import {
+    Field,
+    FieldContent,
+    FieldDescription,
+    FieldError,
+    FieldLabel,
+    FieldLegend,
+    FieldSet
+} from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { Checkbox } from "@/components/ui/checkbox"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Switch } from "@/components/ui/switch"
 import { Search, Plus, Save, Trash2 } from "lucide-react"
 import {useState} from "react";
 
@@ -491,6 +502,205 @@ function App() {
                               {message.length} / 500
                             </span>
                         </div>
+                    </Field>
+                </section>
+
+                <section className="mt-12 max-w-md space-y-6">
+                    <h2 className="text-xl font-semibold">
+                        Checkbox
+                    </h2>
+
+                    <div className="flex items-center gap-2">
+                        <Checkbox id="terms" />
+
+                        <label htmlFor="terms">
+                            我同意使用條款
+                        </label>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        <Checkbox
+                            id="newsletter"
+                            defaultChecked
+                        />
+
+                        <label htmlFor="newsletter">
+                            接收 Email 通知
+                        </label>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        <Checkbox
+                            id="disabled-checkbox"
+                            disabled
+                        />
+
+                        <label htmlFor="disabled-checkbox">
+                            Disabled
+                        </label>
+                    </div>
+                </section>
+
+                <section className="mt-12 max-w-md space-y-6">
+                    <h2 className="text-xl font-semibold">
+                        Checkbox + Field
+                    </h2>
+
+                    <Field orientation="horizontal">
+                        <Checkbox id="terms-field" />
+
+                        <FieldLabel htmlFor="terms-field">
+                            我同意使用條款
+                        </FieldLabel>
+                    </Field>
+
+                    <Field orientation="horizontal">
+                        <Checkbox
+                            id="notifications"
+                            aria-describedby="notifications-description"
+                        />
+
+                        <FieldContent>
+                            <FieldLabel htmlFor="notifications">
+                                接收 Email 通知
+                            </FieldLabel>
+
+                            <FieldDescription id="notifications-description">
+                                我們會寄送重要通知與系統更新。
+                            </FieldDescription>
+                        </FieldContent>
+                    </Field>
+
+                    <Field
+                        orientation="horizontal"
+                        data-invalid="true"
+                    >
+                        <Checkbox
+                            id="privacy"
+                            aria-invalid="true"
+                            aria-describedby="privacy-error"
+                        />
+
+                        <FieldContent>
+                            <FieldLabel htmlFor="privacy">
+                                我已閱讀隱私權政策
+                            </FieldLabel>
+
+                            <FieldError id="privacy-error">
+                                請先閱讀並同意隱私權政策。
+                            </FieldError>
+                        </FieldContent>
+                    </Field>
+                </section>
+
+                <section className="mt-12 max-w-md space-y-6">
+                    <h2 className="text-xl font-semibold">
+                        Radio Group
+                    </h2>
+
+                    <FieldSet>
+                        <FieldLegend>付款方式</FieldLegend>
+
+                        <RadioGroup defaultValue="card">
+                            <Field orientation="horizontal">
+                                <RadioGroupItem
+                                    value="card"
+                                    id="payment-card"
+                                />
+
+                                <FieldLabel htmlFor="payment-card">
+                                    信用卡
+                                </FieldLabel>
+                            </Field>
+
+                            <Field orientation="horizontal">
+                                <RadioGroupItem
+                                    value="atm"
+                                    id="payment-atm"
+                                    disabled
+                                />
+
+                                <FieldLabel htmlFor="payment-atm">
+                                    ATM
+                                </FieldLabel>
+                            </Field>
+
+                            <Field orientation="horizontal">
+                                <RadioGroupItem
+                                    value="store"
+                                    id="payment-store"
+                                />
+
+                                <FieldLabel htmlFor="payment-store">
+                                    超商付款
+                                </FieldLabel>
+                            </Field>
+                        </RadioGroup>
+                    </FieldSet>
+
+                </section>
+
+                <section className="mt-12 max-w-md space-y-6">
+                    <h2 className="text-xl font-semibold">
+                        Switch
+                    </h2>
+
+                    <div className="flex items-center gap-2">
+                        <Switch id="email-switch" />
+
+                        <label htmlFor="email-switch">
+                            Email 通知
+                        </label>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        <Switch
+                            id="enabled-switch"
+                            defaultChecked
+                        />
+
+                        <label htmlFor="enabled-switch">
+                            自動更新
+                        </label>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        <Switch
+                            id="disabled-switch"
+                            disabled
+                        />
+
+                        <label htmlFor="disabled-switch">
+                            Disabled
+                        </label>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        <Switch
+                            id="small-switch"
+                            size="sm"
+                        />
+
+                        <label htmlFor="small-switch">
+                            Small
+                        </label>
+                    </div>
+
+                    <Field orientation="horizontal">
+                        <FieldContent>
+                            <FieldLabel htmlFor="notification-switch">
+                                Email 通知
+                            </FieldLabel>
+
+                            <FieldDescription id="notification-description">
+                                接收重要的帳號與系統通知。
+                            </FieldDescription>
+                        </FieldContent>
+
+                        <Switch
+                            id="notification-switch"
+                            aria-describedby="notification-description"
+                        />
                     </Field>
                 </section>
             </div>
