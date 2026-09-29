@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { Checkbox } from "@/components/ui/checkbox"
 import { Search, Plus, Save, Trash2 } from "lucide-react"
 import {useState} from "react";
 
@@ -492,6 +493,42 @@ function App() {
                             </span>
                         </div>
                     </Field>
+                </section>
+
+                <section className="mt-12 max-w-md space-y-6">
+                    <h2 className="text-xl font-semibold">
+                        Checkbox
+                    </h2>
+
+                    <div className="flex items-center gap-2">
+                        <Checkbox id="terms" />
+
+                        <label htmlFor="terms">
+                            我同意使用條款
+                        </label>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        <Checkbox
+                            id="newsletter"
+                            defaultChecked
+                        />
+
+                        <label htmlFor="newsletter">
+                            接收 Email 通知
+                        </label>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        <Checkbox
+                            id="disabled-checkbox"
+                            disabled
+                        />
+
+                        <label htmlFor="disabled-checkbox">
+                            Disabled
+                        </label>
+                    </div>
                 </section>
             </div>
         </main>
