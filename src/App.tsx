@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import { Search, Plus, Save, Trash2 } from "lucide-react"
 
 const colors = [
@@ -298,6 +299,55 @@ function App() {
                             <Button>送出建議</Button>
                             <Button variant="outline">取消</Button>
                         </div>
+                    </div>
+                </section>
+
+                <section className="max-w-md space-y-6">
+                    <h2 className="text-xl font-semibold">
+                        Input
+                    </h2>
+
+                    <Input placeholder="Default" />
+
+                    <Input
+                        value="已有內容"
+                        readOnly
+                    />
+
+                    <Input
+                        placeholder="Invalid"
+                        aria-invalid="true"
+                    />
+
+                    <Input
+                        placeholder="Disabled"
+                        disabled
+                    />
+
+                    <div className="grid max-w-md gap-4">
+                        <Input
+                            type="text"
+                            placeholder="姓名"
+                        />
+
+                        <Input
+                            type="email"
+                            placeholder="example@example.com"
+                        />
+
+                        <Input
+                            type="password"
+                            placeholder="Password"
+                        />
+
+                        <Input
+                            type="number"
+                            placeholder="0"
+                        />
+
+                        <Input
+                            type="file"
+                        />
                     </div>
                 </section>
             </div>
