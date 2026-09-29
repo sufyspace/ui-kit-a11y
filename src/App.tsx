@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Switch } from "@/components/ui/switch"
 import { Search, Plus, Save, Trash2 } from "lucide-react"
 import {useState} from "react";
 
@@ -637,6 +638,70 @@ function App() {
                         </RadioGroup>
                     </FieldSet>
 
+                </section>
+
+                <section className="mt-12 max-w-md space-y-6">
+                    <h2 className="text-xl font-semibold">
+                        Switch
+                    </h2>
+
+                    <div className="flex items-center gap-2">
+                        <Switch id="email-switch" />
+
+                        <label htmlFor="email-switch">
+                            Email 通知
+                        </label>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        <Switch
+                            id="enabled-switch"
+                            defaultChecked
+                        />
+
+                        <label htmlFor="enabled-switch">
+                            自動更新
+                        </label>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        <Switch
+                            id="disabled-switch"
+                            disabled
+                        />
+
+                        <label htmlFor="disabled-switch">
+                            Disabled
+                        </label>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        <Switch
+                            id="small-switch"
+                            size="sm"
+                        />
+
+                        <label htmlFor="small-switch">
+                            Small
+                        </label>
+                    </div>
+
+                    <Field orientation="horizontal">
+                        <FieldContent>
+                            <FieldLabel htmlFor="notification-switch">
+                                Email 通知
+                            </FieldLabel>
+
+                            <FieldDescription id="notification-description">
+                                接收重要的帳號與系統通知。
+                            </FieldDescription>
+                        </FieldContent>
+
+                        <Switch
+                            id="notification-switch"
+                            aria-describedby="notification-description"
+                        />
+                    </Field>
                 </section>
             </div>
         </main>
