@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 import { Search, Plus, Save, Trash2 } from "lucide-react"
+import {useState} from "react";
+
 
 const colors = [
     {
@@ -91,6 +94,8 @@ const colors = [
 ]
 
 function App() {
+    const [message, setMessage] = useState("")
+
     return (
         <main className="min-h-screen bg-background p-8 text-foreground">
             <div className="mx-auto max-w-5xl space-y-10">
@@ -369,8 +374,8 @@ function App() {
                                 aria-hidden="true"
                                 className="text-destructive"
                             >
-        *
-      </span>
+                                *
+                            </span>
                         </FieldLabel>
 
                         <Input
@@ -402,6 +407,90 @@ function App() {
                         <FieldError id="invalid-email-error">
                             請輸入有效的 Email 格式。
                         </FieldError>
+                    </Field>
+                </section>
+
+                <section className="mt-12 max-w-md space-y-6">
+                    <h2 className="text-xl font-semibold">
+                        Textarea
+                    </h2>
+
+                    <Textarea placeholder="請輸入內容" />
+
+                    <Textarea
+                        placeholder="Invalid"
+                        aria-invalid="true"
+                    />
+
+                    <Textarea
+                        placeholder="Disabled"
+                        disabled
+                    />
+
+                    <Field>
+                        <FieldLabel htmlFor="message">
+                            意見內容
+                        </FieldLabel>
+
+                        <Textarea
+                            id="message"
+                            placeholder="請輸入您的意見"
+                            aria-describedby="message-description"
+                        />
+
+                        <FieldDescription id="message-description">
+                            請簡單描述您的問題或建議。
+                        </FieldDescription>
+                    </Field>
+
+                    <Field data-invalid="true">
+                        <FieldLabel htmlFor="invalid-message">
+                            意見內容
+                        </FieldLabel>
+
+                        <Textarea
+                            id="invalid-message"
+                            value="太短"
+                            readOnly
+                            aria-invalid="true"
+                            aria-describedby="invalid-message-description invalid-message-error"
+                        />
+
+                        <FieldDescription id="invalid-message-description">
+                            請至少輸入 10 個字。
+                        </FieldDescription>
+
+                        <FieldError id="invalid-message-error">
+                            內容長度不足。
+                        </FieldError>
+                    </Field>
+
+                    <Field>
+                        <FieldLabel htmlFor="feedback">
+                            意見內容
+                        </FieldLabel>
+
+                        <Textarea
+                            id="feedback"
+                            value={message}
+                            onChange={(event) => setMessage(event.target.value)}
+                            maxLength={500}
+                            placeholder="請輸入您的意見"
+                            aria-describedby="feedback-description feedback-count"
+                        />
+
+                        <div className="flex items-start justify-between gap-4">
+                            <FieldDescription id="feedback-description">
+                                請簡單描述您的問題或建議。
+                            </FieldDescription>
+
+                            <span
+                                id="feedback-count"
+                                className="shrink-0 text-sm text-muted-foreground"
+                            >
+                              {message.length} / 500
+                            </span>
+                        </div>
                     </Field>
                 </section>
             </div>
