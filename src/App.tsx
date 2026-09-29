@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button"
-import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field"
+import {Field, FieldContent, FieldDescription, FieldError, FieldLabel} from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -530,6 +530,59 @@ function App() {
                         </label>
                     </div>
                 </section>
+
+                <section className="mt-12 max-w-md space-y-6">
+                    <h2 className="text-xl font-semibold">
+                        Checkbox + Field
+                    </h2>
+
+                    <Field orientation="horizontal">
+                        <Checkbox id="terms-field" />
+
+                        <FieldLabel htmlFor="terms-field">
+                            我同意使用條款
+                        </FieldLabel>
+                    </Field>
+
+                    <Field orientation="horizontal">
+                        <Checkbox
+                            id="notifications"
+                            aria-describedby="notifications-description"
+                        />
+
+                        <FieldContent>
+                            <FieldLabel htmlFor="notifications">
+                                接收 Email 通知
+                            </FieldLabel>
+
+                            <FieldDescription id="notifications-description">
+                                我們會寄送重要通知與系統更新。
+                            </FieldDescription>
+                        </FieldContent>
+                    </Field>
+
+                    <Field
+                        orientation="horizontal"
+                        data-invalid="true"
+                    >
+                        <Checkbox
+                            id="privacy"
+                            aria-invalid="true"
+                            aria-describedby="privacy-error"
+                        />
+
+                        <FieldContent>
+                            <FieldLabel htmlFor="privacy">
+                                我已閱讀隱私權政策
+                            </FieldLabel>
+
+                            <FieldError id="privacy-error">
+                                請先閱讀並同意隱私權政策。
+                            </FieldError>
+                        </FieldContent>
+                    </Field>
+                </section>
+
             </div>
         </main>
     )
