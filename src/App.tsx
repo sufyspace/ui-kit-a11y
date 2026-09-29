@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { Field, FieldDescription, FieldError, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Search, Plus, Save, Trash2 } from "lucide-react"
 
@@ -324,31 +325,84 @@ function App() {
                         disabled
                     />
 
-                    <div className="grid max-w-md gap-4">
-                        <Input
-                            type="text"
-                            placeholder="姓名"
-                        />
+                    <Input
+                        type="password"
+                        placeholder="Password"
+                    />
+
+                    <Input
+                        type="number"
+                        placeholder="0"
+                    />
+
+                    <Input type="file" />
+                </section>
+
+                <section className="mt-12 max-w-md space-y-6">
+                    <h2 className="text-xl font-semibold">
+                        Field
+                    </h2>
+
+                    {/* Normal */}
+                    <Field>
+                        <FieldLabel htmlFor="normal-email">
+                            Email
+                        </FieldLabel>
 
                         <Input
+                            id="normal-email"
                             type="email"
                             placeholder="example@example.com"
+                            aria-describedby="normal-email-description"
                         />
 
-                        <Input
-                            type="password"
-                            placeholder="Password"
-                        />
+                        <FieldDescription id="normal-email-description">
+                            我們會使用這個 Email 寄送通知。
+                        </FieldDescription>
+                    </Field>
+
+                    {/* Required */}
+                    <Field>
+                        <FieldLabel htmlFor="required-name">
+                            姓名
+                            <span
+                                aria-hidden="true"
+                                className="text-destructive"
+                            >
+        *
+      </span>
+                        </FieldLabel>
 
                         <Input
-                            type="number"
-                            placeholder="0"
+                            id="required-name"
+                            required
+                            placeholder="請輸入姓名"
                         />
+                    </Field>
+
+                    {/* Invalid */}
+                    <Field data-invalid="true">
+                        <FieldLabel htmlFor="invalid-email">
+                            Email
+                        </FieldLabel>
 
                         <Input
-                            type="file"
+                            id="invalid-email"
+                            type="email"
+                            value="abc"
+                            readOnly
+                            aria-invalid="true"
+                            aria-describedby="invalid-email-description invalid-email-error"
                         />
-                    </div>
+
+                        <FieldDescription id="invalid-email-description">
+                            我們會使用這個 Email 寄送通知。
+                        </FieldDescription>
+
+                        <FieldError id="invalid-email-error">
+                            請輸入有效的 Email 格式。
+                        </FieldError>
+                    </Field>
                 </section>
             </div>
         </main>
