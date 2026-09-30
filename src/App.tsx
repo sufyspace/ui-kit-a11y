@@ -13,6 +13,13 @@ import { Textarea } from "@/components/ui/textarea"
 import { Checkbox } from "@/components/ui/checkbox"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Switch } from "@/components/ui/switch"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 import { Search, Plus, Save, Trash2 } from "lucide-react"
 import {useState} from "react";
 
@@ -703,6 +710,135 @@ function App() {
                         />
                     </Field>
                 </section>
+
+                <section className="mt-12 max-w-md space-y-6">
+                    <h2 className="text-xl font-semibold">
+                        Select
+                    </h2>
+
+                    <Select>
+                        <SelectTrigger>
+                            <SelectValue placeholder="請選擇城市" />
+                        </SelectTrigger>
+
+                        <SelectContent>
+                            <SelectItem value="taipei">
+                                台北
+                            </SelectItem>
+
+                            <SelectItem value="taoyuan">
+                                桃園
+                            </SelectItem>
+
+                            <SelectItem value="taichung">
+                                台中
+                            </SelectItem>
+                        </SelectContent>
+                    </Select>
+
+                    <Select disabled>
+                        <SelectTrigger>
+                            <SelectValue placeholder="Disabled" />
+                        </SelectTrigger>
+
+                        <SelectContent>
+                            <SelectItem value="taipei">台北</SelectItem>
+                            <SelectItem value="taoyuan">桃園</SelectItem>
+                        </SelectContent>
+                    </Select>
+
+                    <Select>
+                        <SelectTrigger>
+                            <SelectValue placeholder="請選擇城市" />
+                        </SelectTrigger>
+
+                        <SelectContent>
+                            <SelectItem value="taipei">
+                                台北
+                            </SelectItem>
+
+                            <SelectItem value="taoyuan">
+                                桃園
+                            </SelectItem>
+
+                            <SelectItem value="taichung" disabled>
+                                台中（暫停使用）
+                            </SelectItem>
+                        </SelectContent>
+                    </Select>
+
+                    <Field>
+                        <FieldLabel htmlFor="city">
+                            城市
+                        </FieldLabel>
+
+                        <Select>
+                            <SelectTrigger
+                                id="city"
+                                aria-describedby="city-description"
+                            >
+                                <SelectValue placeholder="請選擇城市" />
+                            </SelectTrigger>
+
+                            <SelectContent>
+                                <SelectItem value="taipei">
+                                    台北
+                                </SelectItem>
+
+                                <SelectItem value="taoyuan">
+                                    桃園
+                                </SelectItem>
+
+                                <SelectItem value="taichung">
+                                    台中
+                                </SelectItem>
+                            </SelectContent>
+                        </Select>
+
+                        <FieldDescription id="city-description">
+                            請選擇目前居住的城市。
+                        </FieldDescription>
+                    </Field>
+
+                    <Field>
+                        <FieldLabel htmlFor="city">
+                            城市
+                        </FieldLabel>
+
+                        <Select>
+                            <SelectTrigger
+                                id="city"
+                                aria-invalid="true"
+                                aria-describedby="invalid-city-description invalid-city-error"
+                            >
+                                <SelectValue placeholder="請選擇城市" />
+                            </SelectTrigger>
+
+                            <SelectContent>
+                                <SelectItem value="taipei">
+                                    台北
+                                </SelectItem>
+
+                                <SelectItem value="taoyuan">
+                                    桃園
+                                </SelectItem>
+
+                                <SelectItem value="taichung">
+                                    台中
+                                </SelectItem>
+                            </SelectContent>
+                        </Select>
+
+                        <FieldDescription id="city-description">
+                            請選擇目前居住的城市。
+                        </FieldDescription>
+
+                        <FieldError id="invalid-city-error">
+                            請選擇城市。
+                        </FieldError>
+                    </Field>
+                </section>
+
             </div>
         </main>
     )
