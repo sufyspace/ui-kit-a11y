@@ -30,8 +30,16 @@ import {
     AlertDescription,
     AlertTitle,
 } from "@/components/ui/alert"
+import {
+    EmptyState,
+    EmptyStateAction,
+    EmptyStateDescription,
+    EmptyStateIcon,
+    EmptyStateTitle,
+} from "@/components/ui/empty-state"
 
-import { Search, Plus, Save, Trash2, CircleCheck, Info, CircleX, TriangleAlert } from "lucide-react"
+import { Search, Plus, Save, Trash2, CircleCheck, Info, CircleX,
+    TriangleAlert, InboxIcon, HistoryIcon } from "lucide-react"
 import { useEffect, useState } from "react"
 
 
@@ -1279,6 +1287,47 @@ function App() {
                         )}
                     </div>
                 </section>
+
+                <section className="max-w-xl space-y-4">
+                    <h2 className="text-xl font-semibold">
+                        Empty State
+                    </h2>
+
+                    <EmptyState>
+                        <EmptyStateIcon aria-hidden="true">
+                            <InboxIcon />
+                        </EmptyStateIcon>
+
+                        <EmptyStateTitle>
+                            尚無收藏項目
+                        </EmptyStateTitle>
+
+                        <EmptyStateDescription>
+                            你目前還沒有收藏任何內容，可以從瀏覽內容開始加入收藏。
+                        </EmptyStateDescription>
+
+                        <EmptyStateAction>
+                            <Button>
+                                瀏覽內容
+                            </Button>
+                        </EmptyStateAction>
+                    </EmptyState>
+
+                    <EmptyState>
+                        <EmptyStateIcon aria-hidden="true">
+                            <HistoryIcon />
+                        </EmptyStateIcon>
+
+                        <EmptyStateTitle>
+                            尚無歷史紀錄
+                        </EmptyStateTitle>
+
+                        <EmptyStateDescription>
+                            完成操作後，相關紀錄將顯示於此。
+                        </EmptyStateDescription>
+                    </EmptyState>
+                </section>
+
             </div>
         </main>
     )
