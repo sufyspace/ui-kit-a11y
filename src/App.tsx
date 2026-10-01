@@ -24,7 +24,22 @@ import {
 } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
-import { Search, Plus, Save, Trash2 } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
+import {
+    Alert,
+    AlertDescription,
+    AlertTitle,
+} from "@/components/ui/alert"
+import {
+    EmptyState,
+    EmptyStateAction,
+    EmptyStateDescription,
+    EmptyStateIcon,
+    EmptyStateTitle,
+} from "@/components/ui/empty-state"
+
+import { Search, Plus, Save, Trash2, CircleCheck, Info, CircleX,
+    TriangleAlert, InboxIcon, HistoryIcon } from "lucide-react"
 import { useEffect, useState } from "react"
 
 
@@ -126,6 +141,7 @@ function App() {
     const [message, setMessage] = useState("")
     const [errors, setErrors] = useState<FormErrors>({})
     const [submitAttempt, setSubmitAttempt] = useState(0)
+    const [showErrorAlert, setShowErrorAlert] = useState(false)
 
     useEffect(() => {
         if (submitAttempt === 0) return
@@ -1174,6 +1190,142 @@ function App() {
                             </Button>
                         </FieldGroup>
                     </form>
+                </section>
+
+                <section className="space-y-4">
+                    <h2 className="text-xl font-semibold">
+                        Badge
+                    </h2>
+
+                    <div className="flex flex-wrap gap-2">
+                        <Badge variant="neutral">
+                            未設定
+                        </Badge>
+
+                        <Badge variant="primary">
+                            進行中
+                        </Badge>
+
+                        <Badge variant="success">
+                            已通過
+                        </Badge>
+
+                        <Badge variant="warning">
+                            待審核
+                        </Badge>
+
+                        <Badge variant="error">
+                            已退回
+                        </Badge>
+
+                        <Badge variant="outline">
+                            已結束
+                        </Badge>
+                    </div>
+                </section>
+
+                <section className="max-w-xl space-y-4">
+                    <h2 className="text-xl font-semibold">
+                        Alert
+                    </h2>
+
+                    <Alert variant="info">
+                        <Info aria-hidden="true"/>
+                        <AlertTitle>系統公告</AlertTitle>
+                        <AlertDescription>
+                            系統將於今晚 10:00 進行例行維護。
+                        </AlertDescription>
+                    </Alert>
+
+                    <Alert variant="success">
+                        <CircleCheck aria-hidden="true" />
+                        <AlertTitle>儲存成功</AlertTitle>
+                        <AlertDescription>
+                            您的資料已成功更新。
+                        </AlertDescription>
+                    </Alert>
+
+                    <Alert variant="warning">
+                        <TriangleAlert aria-hidden="true" />
+                        <AlertTitle>資料尚未完成</AlertTitle>
+                        <AlertDescription>
+                            還有 3 個必填欄位需要填寫。
+                        </AlertDescription>
+                    </Alert>
+
+                    <Alert variant="error">
+                        <CircleX aria-hidden="true" />
+                        <AlertTitle>儲存失敗</AlertTitle>
+                        <AlertDescription>
+                            無法儲存資料，請稍後再試。
+                        </AlertDescription>
+                    </Alert>
+
+                    <div className="space-y-3">
+                        <Button
+                            type="button"
+                            onClick={() => setShowErrorAlert(true)}
+                        >
+                            模擬儲存失敗
+                        </Button>
+
+                        {showErrorAlert && (
+                            <Alert
+                                variant="error"
+                                role="alert"
+                            >
+                                <CircleX aria-hidden="true" />
+
+                                <AlertTitle>
+                                    儲存失敗
+                                </AlertTitle>
+
+                                <AlertDescription>
+                                    無法儲存資料，請稍後再試。
+                                </AlertDescription>
+                            </Alert>
+                        )}
+                    </div>
+                </section>
+
+                <section className="max-w-xl space-y-4">
+                    <h2 className="text-xl font-semibold">
+                        Empty State
+                    </h2>
+
+                    <EmptyState>
+                        <EmptyStateIcon aria-hidden="true">
+                            <InboxIcon />
+                        </EmptyStateIcon>
+
+                        <EmptyStateTitle>
+                            尚無收藏項目
+                        </EmptyStateTitle>
+
+                        <EmptyStateDescription>
+                            你目前還沒有收藏任何內容，可以從瀏覽內容開始加入收藏。
+                        </EmptyStateDescription>
+
+                        <EmptyStateAction>
+                            <Button>
+                                瀏覽內容
+                            </Button>
+                        </EmptyStateAction>
+                    </EmptyState>
+
+                    <EmptyState>
+                        <EmptyStateIcon aria-hidden="true">
+                            <HistoryIcon />
+                        </EmptyStateIcon>
+
+                        <EmptyStateTitle>
+                            尚無歷史紀錄
+                        </EmptyStateTitle>
+
+                        <EmptyStateDescription>
+                            完成操作後，相關紀錄將顯示於此。
+                        </EmptyStateDescription>
+                    </EmptyState>
                 </section>
 
             </div>
