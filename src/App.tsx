@@ -25,7 +25,7 @@ import {
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 import { Search, Plus, Save, Trash2 } from "lucide-react"
-import {useState} from "react";
+import { useEffect, useState } from "react"
 
 
 const colors = [
@@ -125,6 +125,15 @@ type FormErrors = {
 function App() {
     const [message, setMessage] = useState("")
     const [errors, setErrors] = useState<FormErrors>({})
+    const [submitAttempt, setSubmitAttempt] = useState(0)
+
+    useEffect(() => {
+        if (submitAttempt === 0) return
+
+        document
+            .getElementById("form-error-summary")
+            ?.focus()
+    }, [submitAttempt])
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
@@ -158,11 +167,26 @@ function App() {
 
         setErrors(nextErrors)
 
-        console.log(nextErrors)
-
-        if (Object.keys(nextErrors).length === 0) {
-            console.log("Form valid")
+        if (Object.keys(nextErrors).length > 0) {
+            setSubmitAttempt((count) => count + 1)
+            return
         }
+
+        console.log("Form valid")
+    }
+    const errorEntries = Object.entries(errors)
+
+    const fieldLabels: Record<keyof FormErrors, string> = {
+        name: "姓名",
+        email: "Email",
+        city: "居住城市",
+        terms: "使用條款",
+    }
+    const fieldIds: Record<keyof FormErrors, string> = {
+        name: "profile-name",
+        email: "profile-email",
+        city: "profile-city",
+        terms: "terms",
     }
 
     return (
@@ -902,6 +926,35 @@ function App() {
                     </div>
 
                     <form noValidate onSubmit={handleSubmit}>
+                        {errorEntries.length > 0 && (
+                            <div
+                                id="form-error-summary"
+                                tabIndex={-1}
+                                role="alert"
+                                className="rounded-lg border border-destructive p-4"
+                            >
+                                <h3 className="font-semibold text-destructive">
+                                    表單有 {errorEntries.length} 個欄位需要修正
+                                </h3>
+
+                                <ul className="mt-2 list-disc space-y-1 pl-5 text-sm">
+                                    {errorEntries.map(([field, message]) => {
+                                        const key = field as keyof FormErrors
+
+                                        return (
+                                            <li key={field}>
+                                                <a
+                                                    href={`#${fieldIds[key]}`}
+                                                    className="underline underline-offset-4"
+                                                >
+                                                    {fieldLabels[key]}：{message}
+                                                </a>
+                                            </li>
+                                        )
+                                    })}
+                                </ul>
+                            </div>
+                        )}
                         <FieldGroup>
                             <Field data-invalid={!!errors.name}>
                                 <FieldLabel htmlFor="profile-name">
