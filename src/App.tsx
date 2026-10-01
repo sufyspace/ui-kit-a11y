@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
+import { Badge } from "@/components/ui/badge"
 import { Search, Plus, Save, Trash2 } from "lucide-react"
 import { useEffect, useState } from "react"
 
@@ -1176,6 +1177,37 @@ function App() {
                     </form>
                 </section>
 
+                <section className="space-y-4">
+                    <h2 className="text-xl font-semibold">
+                        Badge
+                    </h2>
+
+                    <div className="flex flex-wrap gap-2">
+                        <Badge variant="neutral">
+                            未設定
+                        </Badge>
+
+                        <Badge variant="primary">
+                            進行中
+                        </Badge>
+
+                        <Badge variant="success">
+                            已通過
+                        </Badge>
+
+                        <Badge variant="warning">
+                            待審核
+                        </Badge>
+
+                        <Badge variant="error">
+                            已退回
+                        </Badge>
+
+                        <Badge variant="outline">
+                            已結束
+                        </Badge>
+                    </div>
+                </section>
             </div>
         </main>
     )
