@@ -1,18 +1,20 @@
 import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
 import {
     Field,
     FieldContent,
     FieldDescription,
     FieldError,
+    FieldGroup,
     FieldLabel,
     FieldLegend,
-    FieldSet
+    FieldSet,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Checkbox } from "@/components/ui/checkbox"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Switch } from "@/components/ui/switch"
+import {
+    RadioGroup,
+    RadioGroupItem,
+} from "@/components/ui/radio-group"
 import {
     Select,
     SelectContent,
@@ -20,8 +22,10 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
+import { Switch } from "@/components/ui/switch"
+import { Textarea } from "@/components/ui/textarea"
 import { Search, Plus, Save, Trash2 } from "lucide-react"
-import {useState} from "react";
+import { useEffect, useState } from "react"
 
 
 const colors = [
@@ -111,8 +115,79 @@ const colors = [
     },
 ]
 
+type FormErrors = {
+    name?: string
+    email?: string
+    city?: string
+    terms?: string
+}
+
 function App() {
     const [message, setMessage] = useState("")
+    const [errors, setErrors] = useState<FormErrors>({})
+    const [submitAttempt, setSubmitAttempt] = useState(0)
+
+    useEffect(() => {
+        if (submitAttempt === 0) return
+
+        document
+            .getElementById("form-error-summary")
+            ?.focus()
+    }, [submitAttempt])
+
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault()
+
+        const formData = new FormData(event.currentTarget)
+
+        const name = String(formData.get("name") ?? "").trim()
+        const email = String(formData.get("email") ?? "").trim()
+        const city = String(formData.get("city") ?? "")
+        const terms = formData.get("terms")
+
+        const nextErrors: FormErrors = {}
+
+        if (!name) {
+            nextErrors.name = "請輸入姓名。"
+        }
+
+        if (!email) {
+            nextErrors.email = "請輸入 Email。"
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            nextErrors.email = "請輸入有效的 Email 格式。"
+        }
+
+        if (!city) {
+            nextErrors.city = "請選擇城市。"
+        }
+
+        if (!terms) {
+            nextErrors.terms = "請先同意使用條款。"
+        }
+
+        setErrors(nextErrors)
+
+        if (Object.keys(nextErrors).length > 0) {
+            setSubmitAttempt((count) => count + 1)
+            return
+        }
+
+        console.log("Form valid")
+    }
+    const errorEntries = Object.entries(errors)
+
+    const fieldLabels: Record<keyof FormErrors, string> = {
+        name: "姓名",
+        email: "Email",
+        city: "居住城市",
+        terms: "使用條款",
+    }
+    const fieldIds: Record<keyof FormErrors, string> = {
+        name: "profile-name",
+        email: "profile-email",
+        city: "profile-city",
+        terms: "terms",
+    }
 
     return (
         <main className="min-h-screen bg-background p-8 text-foreground">
@@ -837,6 +912,268 @@ function App() {
                             請選擇城市。
                         </FieldError>
                     </Field>
+                </section>
+
+                <section className="max-w-xl space-y-6">
+                    <div>
+                        <h2 className="text-xl font-semibold">
+                            個人資料設定
+                        </h2>
+
+                        <p className="mt-1 text-sm text-muted-foreground">
+                            更新您的基本資料與通知偏好。
+                        </p>
+                    </div>
+
+                    <form noValidate onSubmit={handleSubmit}>
+                        {errorEntries.length > 0 && (
+                            <div
+                                id="form-error-summary"
+                                tabIndex={-1}
+                                role="alert"
+                                className="rounded-lg border border-destructive p-4"
+                            >
+                                <h3 className="font-semibold text-destructive">
+                                    表單有 {errorEntries.length} 個欄位需要修正
+                                </h3>
+
+                                <ul className="mt-2 list-disc space-y-1 pl-5 text-sm">
+                                    {errorEntries.map(([field, message]) => {
+                                        const key = field as keyof FormErrors
+
+                                        return (
+                                            <li key={field}>
+                                                <a
+                                                    href={`#${fieldIds[key]}`}
+                                                    className="underline underline-offset-4"
+                                                >
+                                                    {fieldLabels[key]}：{message}
+                                                </a>
+                                            </li>
+                                        )
+                                    })}
+                                </ul>
+                            </div>
+                        )}
+                        <FieldGroup>
+                            <Field data-invalid={!!errors.name}>
+                                <FieldLabel htmlFor="profile-name">
+                                    姓名
+                                    <span
+                                        aria-hidden="true"
+                                        className="text-destructive"
+                                    >
+      *
+    </span>
+                                </FieldLabel>
+
+                                <Input
+                                    id="profile-name"
+                                    name="name"
+                                    required
+                                    autoComplete="name"
+                                    placeholder="請輸入姓名"
+                                    aria-invalid={!!errors.name}
+                                    aria-describedby={
+                                        errors.name
+                                            ? "profile-name-error"
+                                            : undefined
+                                    }
+                                />
+
+                                {errors.name && (
+                                    <FieldError id="profile-name-error">
+                                        {errors.name}
+                                    </FieldError>
+                                )}
+                            </Field>
+                            <Field data-invalid={!!errors.email}>
+                                <FieldLabel htmlFor="profile-email">
+                                    Email
+                                    <span
+                                        aria-hidden="true"
+                                        className="text-destructive"
+                                    >
+      *
+    </span>
+                                </FieldLabel>
+
+                                <Input
+                                    id="profile-email"
+                                    name="email"
+                                    type="email"
+                                    required
+                                    autoComplete="email"
+                                    placeholder="example@example.com"
+                                    aria-invalid={!!errors.email}
+                                    aria-describedby={
+                                        errors.email
+                                            ? "profile-email-description profile-email-error"
+                                            : "profile-email-description"
+                                    }
+                                />
+
+                                <FieldDescription id="profile-email-description">
+                                    系統通知將寄送至此信箱。
+                                </FieldDescription>
+
+                                {errors.email && (
+                                    <FieldError id="profile-email-error">
+                                        {errors.email}
+                                    </FieldError>
+                                )}
+                            </Field>
+                            <Field data-invalid={!!errors.city}>
+                                <FieldLabel htmlFor="profile-city">
+                                    居住城市
+                                    <span
+                                        aria-hidden="true"
+                                        className="text-destructive"
+                                    >
+      *
+    </span>
+                                </FieldLabel>
+
+                                <Select name="city">
+                                    <SelectTrigger
+                                        id="profile-city"
+                                        aria-invalid={!!errors.city}
+                                        aria-describedby={
+                                            errors.city
+                                                ? "profile-city-description profile-city-error"
+                                                : "profile-city-description"
+                                        }
+                                    >
+                                        <SelectValue placeholder="請選擇城市" />
+                                    </SelectTrigger>
+
+                                    <SelectContent>
+                                        <SelectItem value="taipei">台北</SelectItem>
+                                        <SelectItem value="taoyuan">桃園</SelectItem>
+                                        <SelectItem value="taichung">台中</SelectItem>
+                                        <SelectItem value="kaohsiung">高雄</SelectItem>
+                                    </SelectContent>
+                                </Select>
+
+                                <FieldDescription id="profile-city-description">
+                                    請選擇目前主要居住的城市。
+                                </FieldDescription>
+
+                                {errors.city && (
+                                    <FieldError id="profile-city-error">
+                                        {errors.city}
+                                    </FieldError>
+                                )}
+                            </Field>
+                            <Field>
+                                <FieldLabel htmlFor="profile-bio">
+                                    個人簡介
+                                </FieldLabel>
+
+                                <Textarea
+                                    id="profile-bio"
+                                    name="bio"
+                                    maxLength={200}
+                                    placeholder="簡單介紹一下自己"
+                                    aria-describedby="profile-bio-description"
+                                />
+
+                                <FieldDescription id="profile-bio-description">
+                                    最多 200 個字。
+                                </FieldDescription>
+                            </Field>
+                            <FieldSet>
+                                <FieldLegend>
+                                    偏好的聯絡方式
+                                </FieldLegend>
+
+                                <RadioGroup
+                                    name="contact-method"
+                                    defaultValue="email"
+                                >
+                                    <Field orientation="horizontal">
+                                        <RadioGroupItem
+                                            id="contact-email"
+                                            value="email"
+                                        />
+
+                                        <FieldLabel htmlFor="contact-email">
+                                            Email
+                                        </FieldLabel>
+                                    </Field>
+
+                                    <Field orientation="horizontal">
+                                        <RadioGroupItem
+                                            id="contact-phone"
+                                            value="phone"
+                                        />
+
+                                        <FieldLabel htmlFor="contact-phone">
+                                            電話
+                                        </FieldLabel>
+                                    </Field>
+                                </RadioGroup>
+                            </FieldSet>
+                            <Field orientation="horizontal">
+                                <FieldContent>
+                                    <FieldLabel htmlFor="email-notification">
+                                        Email 通知
+                                    </FieldLabel>
+
+                                    <FieldDescription id="email-notification-description">
+                                        接收重要的帳號與系統通知。
+                                    </FieldDescription>
+                                </FieldContent>
+
+                                <Switch
+                                    id="email-notification"
+                                    name="email-notification"
+                                    aria-describedby="email-notification-description"
+                                />
+                            </Field>
+                            <Field
+                                orientation="horizontal"
+                                data-invalid={!!errors.terms}
+                            >
+                                <Checkbox
+                                    id="terms"
+                                    name="terms"
+                                    required
+                                    aria-invalid={!!errors.terms}
+                                    aria-describedby={
+                                        errors.terms
+                                            ? "terms-description terms-error"
+                                            : "terms-description"
+                                    }
+                                />
+
+                                <FieldContent>
+                                    <FieldLabel htmlFor="terms">
+                                        我已閱讀並同意使用條款
+                                        <span
+                                            aria-hidden="true"
+                                            className="text-destructive"
+                                        >
+        *
+      </span>
+                                    </FieldLabel>
+
+                                    <FieldDescription id="terms-description">
+                                        送出前請確認您已閱讀相關條款。
+                                    </FieldDescription>
+
+                                    {errors.terms && (
+                                        <FieldError id="terms-error">
+                                            {errors.terms}
+                                        </FieldError>
+                                    )}
+                                </FieldContent>
+                            </Field>
+                            <Button type="submit">
+                                儲存設定
+                            </Button>
+                        </FieldGroup>
+                    </form>
                 </section>
 
             </div>
