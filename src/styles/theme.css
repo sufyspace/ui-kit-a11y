@@ -104,8 +104,25 @@
     --color-accent: var(--accent);
     --color-accent-foreground: var(--accent-foreground);
 
-    /* Destructive */
+    /* Destructive 刪除、移除、危險操作*/
     --color-destructive: var(--destructive);
+
+    /* CUI Status */
+    --color-success: var(--cui-color-success);
+    --color-on-success: var(--cui-color-on-success);
+    --color-success-container: var(--cui-color-success-container);
+    --color-on-success-container: var(--cui-color-on-success-container);
+
+    --color-warning: var(--cui-color-warning);
+    --color-on-warning: var(--cui-color-on-warning);
+    --color-warning-container: var(--cui-color-warning-container);
+    --color-on-warning-container: var(--cui-color-on-warning-container);
+
+    /*失敗、錯誤*/
+    --color-error: var(--cui-color-error);
+    --color-on-error: var(--cui-color-on-error);
+    --color-error-container: var(--cui-color-error-container);
+    --color-on-error-container: var(--cui-color-on-error-container);
 
     /* Border / Form */
     --color-border: var(--border);
