@@ -37,6 +37,15 @@ import {
     EmptyStateIcon,
     EmptyStateTitle,
 } from "@/components/ui/empty-state"
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 
 import { Search, Plus, Save, Trash2, CircleCheck, Info, CircleX,
     TriangleAlert, InboxIcon, HistoryIcon } from "lucide-react"
@@ -1328,6 +1337,78 @@ function App() {
                     </EmptyState>
                 </section>
 
+                <section className="max-w-4xl space-y-4">
+                    <div>
+                        <h2 className="text-xl font-semibold">
+                        申請紀錄
+                        </h2>
+                        <p className="text-sm text-muted-foreground">
+                        查看目前的申請與審核狀態。
+                        </p>
+                    </div>
+
+                    <Table>
+                        <TableCaption className="sr-only">
+                        申請紀錄：包含姓名、申請項目、審核狀態與更新時間
+                        </TableCaption>
+
+                        <TableHeader>
+                        <TableRow>
+                            <TableHead scope="col">姓名</TableHead>
+                            <TableHead scope="col">申請項目</TableHead>
+                            <TableHead scope="col">狀態</TableHead>
+                            <TableHead scope="col">更新時間</TableHead>
+                        </TableRow>
+                        </TableHeader>
+
+                        <TableBody>
+                        <TableRow>
+                            <TableCell>王小明</TableCell>
+                            <TableCell>學分抵免</TableCell>
+                            <TableCell>
+                            <Badge variant="success">
+                                已通過
+                            </Badge>
+                            </TableCell>
+                            <TableCell>
+                            <time dateTime="2026-10-01">
+                                2026/10/01
+                            </time>
+                            </TableCell>
+                        </TableRow>
+
+                        <TableRow>
+                            <TableCell>陳小華</TableCell>
+                            <TableCell>休學申請</TableCell>
+                            <TableCell>
+                            <Badge variant="warning">
+                                待審核
+                            </Badge>
+                            </TableCell>
+                            <TableCell>
+                            <time dateTime="2026-10-01">
+                                2026/10/01
+                            </time>
+                            </TableCell>
+                        </TableRow>
+
+                        <TableRow>
+                            <TableCell>林小美</TableCell>
+                            <TableCell>獎學金申請</TableCell>
+                            <TableCell>
+                            <Badge variant="error">
+                                已退回
+                            </Badge>
+                            </TableCell>
+                            <TableCell>
+                            <time dateTime="2026-09-30">
+                                2026/09/30
+                            </time>
+                            </TableCell>
+                        </TableRow>
+                        </TableBody>
+                    </Table>
+                </section>        
             </div>
         </main>
     )
